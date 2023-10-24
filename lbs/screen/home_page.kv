@@ -1,0 +1,48 @@
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+#:import StoryCreator lbs.components.story_creator.StoryCreator
+#:import BottomNav lbs.components.bottom_nav.BottomNav
+<HomePage>:
+    md_bg_color: get_color_from_hex("#FFFFFF")
+    MDBoxLayout:
+        orientation:'vertical'
+
+        #AppBar
+        AppBar:
+        MDBoxLayout:
+            ScrollView:
+                bar_width:0
+
+                MDBoxLayout:
+                    adaptive_height:True
+
+                    MDBoxLayout:
+                        orientation: 'vertical'
+                        adaptive_height:True
+                        id:timeline
+
+                        #stories
+                        ScrollView:
+                            size_hint_y:None
+                            height:110
+                            bar_width:0
+
+                            MDBoxLayout:
+                                adaptive_height:True
+                                spacing:'5'
+                                padding: 5
+
+                                #story creator
+                                StoryCreator:
+                                    avatar:root.profile_picture
+
+                                MDBoxLayout:
+                                    adaptive_height:True
+                                    padding:5
+                                    spacing:5
+                                    id:stories
+
+                        MDSeparator:
+        
+        #Bottom Navigation Bar
+        BottomNav:
+            avatar:root.profile_picture
