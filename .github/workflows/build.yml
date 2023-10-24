@@ -21,27 +21,20 @@ jobs:
     - name: Install buildozer
       run: pip install buildozer
 
+    - name: Copy buildozer.spec
+      run: cp buildozer.spec
+
     - name: Set up Buildozer
       run: buildozer init
 
     - name: Configure Buildozer
-      run: |
-        # Add your buildozer.spec file to the repository and copy it to the workspace
-        cp path/to/your/buildozer.spec buildozer.spec
-        buildozer android release
+      run: buildozer -v android debug
 
     - name: Build APK
-      run: buildozer -v android debug
+      run: buildozer android debug
 
     - name: Upload APK
       uses: actions/upload-artifact@v2
       with:
         name: app
         path: bin
-
-    - name: Publish APK
-      if: success()
-      uses: softprops/action-gh-release@v1
-      with:
-        files: bin/*-release.apk
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
